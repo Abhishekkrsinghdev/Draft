@@ -1,0 +1,35 @@
+export
+-----------
+==>The export declaration is used to export values from a js module.Exported values can then be imported into other programs with the import declaration or(dynamic import).
+==>Value of an imported binding is subject to change in the module that exports it(i.e. module updates the value of a binding that it exports, the update will be visible in its imported value)
+==>The use of export declaration in a source file requires file to be interpreted as module by the runtime.
+==>If we are using HTML file and using script tag to add the js file then for that js file to be interpreted as module we need to add type="module" to the script tag.
+==>Module are automatically interpreted in strict mode.
+==>The use of an alias can be done with using as,The actual exported name can be specified as string literal which may not be valid identifier.
+
+==>Module can have two types of exports named and default 
+	we can have multiple named exports in one module but only one default export.
+==>After the export keyword we can use let,const and var declarations as well as function or class declaration
+==>export {} does not export an empty object it's a no-op declaration that exports nothing(an empty name list)
+==>Export declarations are not subject to temporal dead zone
+	Ex-export {Y};
+	      const Y=1;
+	This works as export is only a declaration and it doesn't utilize the value of Y
+==>export {myFunction as default} is equivalent to export default myFunction
+==>Having exports with duplicate names and having more than one export will result in syntax error
+==> export default syntax allows any expression Ex- export default 1+1;
+==>Special case
+	 functions and classes are exported as declarations not expressions these declarations can be anonymous this means that functions will be hoisted
+	Ex-foo();
+	      export default function foo(){
+	            console.log("Hi");
+	      }
+                 This works as foo is function declaration and not function expression
+                where as this will not work as it is function expression(resulting an error Cannot access 'foo' before initialization)
+            Ex- foo();
+	      const foo=()=>{
+    		console.log("hi");
+	       }
+	      export default foo;
+
+==>Named exports are useful when we need to export several values and while importing they must be referred by exact same name or we can rename it using as keyword but for default we have the liberty to use any name.Renaming using as can also be used to avoid naming conflicts
